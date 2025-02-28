@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCBC 360 Assistant tool</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    #container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 16px;
+      display: block;
+      margin-top: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 4px;
+    }
+    .back-btn {
+      background-color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <!-- First Page -->
+    <div id="firstPage">
+      <h1>OCBC 360 calculator</h1>
+      <label for="currBalance">Current Balance:</label>
+      <input type="number" id="currBalance" placeholder="Enter current balance" />
+
+      <label for="currAvg">Current Average:</label>
+      <input type="number" id="currAvg" placeholder="Enter current average" />
+
+      <label for="avgIncrease">Average Increase:</label>
+      <input type="number" id="avgIncrease" placeholder="Enter average increase" />
+
+      <label for="dateInput">Today's Date:</label>
+      <input type="text" id="dateInput" placeholder="Select Date" />
+
+      <button id="calculateBtn">Calculate</button>
+    </div>
+
+    <!-- Second Page -->
+    <div id="secondPage" class="hidden">
+      <h1>Results</h1>
+      <div id="todayResult" class="result"></div>
+      <div id="nextMonthResult" class="result"></div>
+      <button id="backBtn" class="back-btn">Back</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#dateInput", {
+      dateFormat: "d/m/Y",
+      defaultDate: new Date()
+    });
+
+    function calculateChange(currVal, currAvg, avgInc, day, numDays) {
+      const lastMonthAvg = currAvg - avgInc;
+      const currentTargetAvg = lastMonthAvg + 500;
+      const todayTargetAmt = ((currentTargetAvg * numDays) - (currAvg * (day - 1))) / (numDays - day + 1);
+      const changeValue = parseFloat((currVal - todayTargetAmt).toFixed(2));
+
+      let todayText = "";
+      if (changeValue > currVal){
+        todayText = "Today : No Possible Solution"
+      }
+      else {
+        if (changeValue > 0) {
+          todayText = "Today : Withdraw $" + Math.abs(changeValue);
+        } else {
+          todayText = "Today : Deposit $" + Math.abs(changeValue);
+        }
+      }
+
+      const nextMonthAvg = currentTargetAvg + 500;
+      const firstDayAmt = parseFloat((nextMonthAvg - todayTargetAmt).toFixed(2));
+
+      let nextMonthText = "";
+      if (firstDayAmt > currVal){
+        nextMonthText = "1st next month : No Possible Solution"
+      } else {
+        if (firstDayAmt < 0) {
+          nextMonthText = "1st next month : Withdraw $" + Math.abs(firstDayAmt);
+        } else {
+          nextMonthText = "1st next month : Deposit $" + Math.abs(firstDayAmt);
+        }
+      }
+      
+      return { todayText, nextMonthText };
+    }
+
+    document.getElementById("calculateBtn").addEventListener("click", () => {
+      const currVal = parseFloat(document.getElementById("currBalance").value);
+      const currAvg = parseFloat(document.getElementById("currAvg").value);
+      const avgInc = parseFloat(document.getElementById("avgIncrease").value);
+      const selectedDate = document.getElementById("dateInput").value;
+
+      if (isNaN(currVal) || isNaN(currAvg) || isNaN(avgInc) || !selectedDate) {
+        alert("Please fill out all fields correctly.");
+        return;
+      }
+
+      const [dayStr, monthStr, yearStr] = selectedDate.split('/');
+      const day = parseInt(dayStr);
+      const month = parseInt(monthStr);
+      const year = parseInt(yearStr);
+
+      const numDays = new Date(year, month, 0).getDate();
+
+      const results = calculateChange(currVal, currAvg, avgInc, day, numDays);
+
+      document.getElementById("todayResult").textContent = results.todayText;
+      document.getElementById("nextMonthResult").textContent = results.nextMonthText;
+
+      document.getElementById("firstPage").classList.add("hidden");
+      document.getElementById("secondPage").classList.remove("hidden");
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      document.getElementById("secondPage").classList.add("hidden");
+      document.getElementById("firstPage").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
