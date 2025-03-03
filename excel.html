@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detailed Caclulations</title>
+  <!-- Include SheetJS via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 10px; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+  <h1>Info</h1>
+  <div id="lastMonthAvgLbl"></div>
+  <div id="targetMonthAvgLbl"></div>
+  <h1>Action</h1>
+  <div id="changeAmtLbl"></div>
+  <div id="firstDayAmtLbl"></div>
+  <h1>Detailed Caclulations</h1>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>Calculated Based On</th>
+        <th>Actual Day</th>
+        <th>Current Value</th>
+        <th>Current Average</th>
+        <th>Average Increase</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <!-- Button to export table to Excel -->
+  <button id="export-btn">Export to Excel</button>
+  <button id="excelBackBtn">Back</button>
+
+  <script src="js/excel.js"></script>
+</body>
+</html>
