@@ -5,9 +5,9 @@ flatpickr("#dateInput", {
   });
 
 // Function to calculate the required changes
-function calculateChange(currVal, currAvg, avgInc, day, numDays) {
+function calculateChange(currVal, currAvg, avgInc, TargetAvgInc, day, numDays) {
   const lastMonthAvg = currAvg - avgInc;
-  const currentTargetAvg = lastMonthAvg + 500;
+  const currentTargetAvg = lastMonthAvg + TargetAvgInc;
   const todayTargetAmt = ((currentTargetAvg * numDays) - (currAvg * (day - 1))) / (numDays - day + 1);
   const changeValue = parseFloat((currVal - todayTargetAmt).toFixed(2));
 
@@ -33,7 +33,7 @@ function calculateChange(currVal, currAvg, avgInc, day, numDays) {
   }
   sessionStorage.setItem("todayText", todayText);
 
-  const nextMonthAvg = currentTargetAvg + 500;
+  const nextMonthAvg = currentTargetAvg + TargetAvgInc;
   const firstDayAmt = parseFloat((nextMonthAvg - todayTargetAmt).toFixed(2));
 
   let nextMonthText = "";
@@ -56,6 +56,7 @@ document.getElementById("calculateBtn").addEventListener("click", () => {
   const currVal = parseFloat(document.getElementById("currBalance").value);
   const currAvg = parseFloat(document.getElementById("currAvg").value);
   const avgInc = parseFloat(document.getElementById("avgIncrease").value);
+  const TargetAvgInc = parseFloat(document.getElementById("targetAvgIncrease").value);
   const selectedDate = document.getElementById("dateInput").value;
 
   if (isNaN(currVal) || isNaN(currAvg) || isNaN(avgInc) || !selectedDate) {
@@ -87,7 +88,7 @@ document.getElementById("calculateBtn").addEventListener("click", () => {
   const prevMonthNumDays = new Date(year, Number(month)-1, 0).getDate()
   sessionStorage.setItem("prevMonthNumDays", prevMonthNumDays);
 
-  const results = calculateChange(currVal, currAvg, avgInc, day, numDays);
+  const results = calculateChange(currVal, currAvg, avgInc, TargetAvgInc, day, numDays);
 
   document.getElementById("todayResult").textContent = results.todayText;
   document.getElementById("nextMonthResult").textContent = results.nextMonthText;

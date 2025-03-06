@@ -1,0 +1,83 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f9;
+    color: #333;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .labels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  .labels div {
+    flex: 1;
+    min-width: 200px;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  /* Table Styles */
+  #data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  #data-table th,
+  #data-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  #data-table th {
+    background-color: #0073e6;
+    color: #fff;
+  }
+  #data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  /* Button Styles */
+  .button-container {
+    text-align: center;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: opacity 0.2s ease-in-out;
+  }
+  button:hover {
+    opacity: 0.9;
+  }
+  #export-btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  #excelBackBtn {
+    background-color: #dc3545;
+    color: #fff;
+  }
