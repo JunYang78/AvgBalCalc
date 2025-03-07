@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCBC 360 Assistant tool</title>
+  <link rel="stylesheet" href="css/AvgCalc.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<body>
+  <div id="container">
+    <!-- First Page -->
+    <div id="firstPage">
+      <h1>Average Balance Calculator</h1>
+      <label for="currBalance">Current Balance:</label>
+      <input type="number" id="currBalance" placeholder="Enter current balance" />
+
+      <label for="currAvg">Current Average:</label>
+      <input type="number" id="currAvg" placeholder="Enter current average" />
+
+      <label for="avgIncrease">Current Average Increase:</label>
+      <input type="number" id="avgIncrease" placeholder="Enter current average increase" />
+
+      <label for="targetAvgIncrease">Target Average Increase:</label>
+      <input type="number" id="targetAvgIncrease" placeholder="Enter target average increase" value="500" />
+
+      <label for="dateInput">Today's Date:</label>
+      <input type="text" id="dateInput" placeholder="Select Date" />
+
+      <button id="calculateBtn">Calculate</button>
+      <button class="back-btn" id="avgCalcBackbtn">Back</button>
+    </div>
+
+    <!-- Second Page -->
+    <div id="secondPage" class="hidden">
+      <h1>Results</h1>
+      <div id="todayResult" class="result"></div>
+      <div id="nextMonthResult" class="result"></div>
+      <button id="fullTableCalc">More Info</button>
+      <button id="backBtn" class="back-btn">Back</button>
+    </div>
+  </div>
+
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Link to external JavaScript -->
+  <script src="js/AvgCalc.js"></script>
+</body>
+</html>

@@ -108,4 +108,9 @@ document.getElementById("fullTableCalc").addEventListener("click", () => {
   window.location.href = "excel.html";
 });
 
+document.getElementById("avgCalcBackbtn").addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+
 

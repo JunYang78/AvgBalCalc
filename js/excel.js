@@ -88,5 +88,6 @@ document.getElementById("changeAmtLbl").textContent = sessionStorage.getItem("to
 document.getElementById("firstDayAmtLbl").textContent = sessionStorage.getItem("nextMonthText");
 
 document.getElementById("excelBackBtn").addEventListener("click", () => {
-  window.location.href = "index.html";
+  window.location.href = "AvgCalc.html";
+  
 });
