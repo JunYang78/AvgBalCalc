@@ -1,0 +1,29 @@
+.hover-animate-text {
+  cursor: pointer;
+    display: inline-block;
+  position: relative;
+  transition: 0.3s;
+  }
+
+  .hover-animate-text:after {
+    content: "";
+    position: absolute; 
+    width: 0; 
+    height: 10px; 
+    transition: width 0.3s ease-in-out; 
+  }
+
+  .hover-animate-text:hover::after {
+    content: " >>";
+    width: 10px; 
+    right: 20px; 
+  }
+
+  .hover-animate-text:hover span {
+    padding-right: 15px;
+  }
+
+  .hover-animate-text:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

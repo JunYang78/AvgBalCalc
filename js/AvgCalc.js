@@ -114,3 +114,4 @@ document.getElementById("avgCalcBackbtn").addEventListener("click", () => {
 
 
 
+

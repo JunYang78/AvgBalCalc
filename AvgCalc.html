@@ -3,41 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OCBC 360 Assistant tool</title>
-  <link rel="stylesheet" href="css/AvgCalc.css" />
+  <title>OCBC 360 Assistant Tool</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="css/Animate.css" />
 </head>
-<body>
-  <div id="container">
+<body class="bg-gray-100 p-5 font-sans">
+  <div class="max-w-lg mx-auto bg-white rounded-lg p-6 shadow-md">
     <!-- First Page -->
     <div id="firstPage">
-      <h1>Average Balance Calculator</h1>
-      <label for="currBalance">Current Balance:</label>
-      <input type="number" id="currBalance" placeholder="Enter current balance" />
+      <h1 class="text-center text-2xl font-semibold mb-6">Average Balance Calculator</h1>
+      
+      <label for="currBalance" class="block text-gray-700 text-sm">Current Balance:</label>
+      <input type="number" id="currBalance" placeholder="Enter current balance" class="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm">
 
-      <label for="currAvg">Current Average:</label>
-      <input type="number" id="currAvg" placeholder="Enter current average" />
+      <label for="currAvg" class="block text-gray-700 text-sm mt-4">Current Average:</label>
+      <input type="number" id="currAvg" placeholder="Enter current average" class="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm">
 
-      <label for="avgIncrease">Current Average Increase:</label>
-      <input type="number" id="avgIncrease" placeholder="Enter current average increase" />
+      <label for="avgIncrease" class="block text-gray-700 text-sm mt-4">Current Average Increase:</label>
+      <input type="number" id="avgIncrease" placeholder="Enter current average increase" class="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm">
 
-      <label for="targetAvgIncrease">Target Average Increase:</label>
-      <input type="number" id="targetAvgIncrease" placeholder="Enter target average increase" value="500" />
+      <label for="targetAvgIncrease" class="block text-gray-700 text-sm mt-4">Target Average Increase:</label>
+      <input type="number" id="targetAvgIncrease" placeholder="Enter target average increase" value="500" class="w-full p-3 mt-1 border border-gray-300 rounded-lg text-sm">
 
-      <label for="dateInput">Today's Date:</label>
-      <input type="text" id="dateInput" placeholder="Select Date" />
+      <label for="dateInput" class="block text-gray-700 text-sm mt-4">Today's Date:</label>
+      <input type="text" id="dateInput" placeholder="Select Date" class="w-full p-3 mt-2 border border-gray-300 rounded-lg text-sm">
 
-      <button id="calculateBtn">Calculate</button>
-      <button class="back-btn" id="avgCalcBackbtn">Back</button>
+      <div class="flex gap-3 mt-6">
+        <button class="w-4/5 bg-blue-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-blue-600 hover-animate-text" id="calculateBtn"><span>Calculate</span></button>
+        <button class="w-1/5 bg-gray-500 text-white p-3 rounded-lg font-medium text-sm hover:bg-gray-600  hover-animate-text" id="avgCalcBackbtn"><span>Back</span></button>
+      </div>
     </div>
 
     <!-- Second Page -->
     <div id="secondPage" class="hidden">
-      <h1>Results</h1>
-      <div id="todayResult" class="result"></div>
-      <div id="nextMonthResult" class="result"></div>
-      <button id="fullTableCalc">More Info</button>
-      <button id="backBtn" class="back-btn">Back</button>
+      <h1 class="text-center text-2xl font-semibold mb-6">Results</h1>
+      <div id="todayResult" class="result bg-gray-100 p-4 rounded-lg mb-4 text-lg font-medium"></div>
+      <div id="nextMonthResult" class="result bg-gray-100 p-4 rounded-lg mb-4 text-lg font-medium"></div>
+      <button id="fullTableCalc" class="bg-blue-500 text-white p-3 rounded-lg mt-4 w-full font-medium text-sm hover:bg-blue-600">More Info</button>
+      <button id="backBtn" class="bg-gray-500 text-white p-3 rounded-lg mt-4 w-full font-medium text-sm hover:bg-gray-600">Back</button>
     </div>
   </div>
 
